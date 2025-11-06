@@ -188,3 +188,4 @@ ee-zeno-service-account.json
 
 # Logs
 logs/
+/.idea/
