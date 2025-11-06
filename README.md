@@ -1,46 +1,62 @@
-# Global Nature Watch Agent
+# 🌳 Project Zeno: Narrative Experiments Fork
 
-Language Interface for Maps & WRI/LCL data APIs.
+**Upstream Project:** [wri/project-zeno](https://github.com/wri/project-zeno) — Global Nature Watch Agent  
+**This Fork's Focus:** Transforming forest data into emotional, aesthetic, and experimental narratives
 
-## Project overview
+---
 
-The core of this project is an LLM powered agent that drives
-the conversations for Global Nature Watch. The project is fully
-open source and can be ran locally with the appropriate keys
-for accessing external services.
+## 🎭 What This Fork Does
 
-### Agent
+While the upstream project provides factual, comprehensive forest monitoring narratives, **this fork explores the creative, emotional, and aesthetic dimensions of deforestation data**.
 
-Our agent is a simple ReAct agent implemented in Langgraph. It
-uses tools. The tools at a high level do the following things
+We're building experimental narrative tools that transform WRI/GFW forest change data into alternative formats:
 
-- Provide information about its capabilities
-- Retrieve areas of interest
-- Select appropriate datasets
-- Retrieve statistics from the WRI analytics api
-- Generate insights including charts from the data
+- 🖊️ **Haiku & Micro-poetry** — Ultra-constrained literary formats (5-7-5 syllables) that distill forest loss into emotional resonance
+- 🎵 **Soundscapes** — Audio representations of forests and their silence
+- 📖 **Speculative Fiction** — "What if" narratives, counterfactual stories, climate fiction
+- 🌍 **Parallel Earths** — Visualizations of alternate timelines with different conservation choices
+- 🎨 **Visual Narratives** — Artistic interpretations of data (stretch goal)
 
-The LLM to use is plug and play, we rely mostly on Sonnet & Gemini
-for planning and tool calling.
+**Why?** Because sometimes the most powerful way to communicate about environmental change isn't through charts and statistics—it's through haiku about silence, soundscapes of loss, or stories about forests that might have been.
+
+**This is a learning project:** Understanding production LangGraph agent architecture while experimenting with narrative generation for conservation tech.
+
+---
+
+## 📖 About the Upstream Project
+
+The core of the upstream project is an LLM-powered agent that drives conversations for Global Nature Watch. It's a production-quality ReAct agent implemented in LangGraph that:
+
+- Retrieves areas of interest
+- Selects appropriate datasets via RAG
+- Retrieves statistics from the WRI analytics API
+- Generates factual insights including charts from the data
+
+We respect and preserve this architecture—our narrative tools extend it, not replace it.
 
 For detailed technical architecture, see [Agent Architecture Documentation](docs/AGENT_ARCHITECTURE.md).
 
-### Infrastructure
+---
 
-To enable that, the project relies on a set of services being deployed with it.
+## 🎨 Narrative Tools Extension (This Fork)
 
-- eoAPI to provide access to the LCL data in a STAC catalog and serving tiles
-- Langfuse for tracing of the agent interactions
-- PostgreSQL for the API data and geographic search of AOIs
-- FastAPI deployment for the API
+Our additions follow a modular pattern that respects the upstream architecture:
 
-All these services are being managed and deployed throug our deploy
-repository at [project-zeno-deploy](https://github.com/wri/project-zeno-deploy)
+```
+User Query → API → Agent → Tools → [NEW: Narrative Tools] → Creative Output Formats
+```
 
-### Frontend
+**Extension Points:**
+- `/src/narrative_tools/` — Experimental narrative generators (haiku, soundscapes, fiction)
+- `/src/agent/tools/narrative_*.py` — Agent tool wrappers for narrative capabilities
+- `/tests/narrative_tools/` — Tests for our additions
+- `/docs/narrative_tools/` — Documentation for experimental formats
 
-The frontend application for this project is a nextjs project
-that can be found at [project-zeno-next](https://github.com/wri/project-zeno-next)
+**Philosophy:** Keep the core unchanged. Add experimental tools as isolated, reusable modules that could potentially be contributed upstream if they prove valuable.
+
+**Current Status:** Foundation phase—studying upstream patterns before implementing narrative generators.
+
+---
 
 ## Dependencies
 
@@ -56,7 +72,8 @@ for running the sytem locally.
 1. **Clone and setup:**
 
    ```bash
-   git clone git@github.com:wri/project-zeno.git
+   # Clone this fork (or your own fork of this narrative experiments fork)
+   git clone git@github.com:kacperwojtas/project-zeno.git
    cd project-zeno
    uv sync
    source .venv/bin/activate
@@ -268,3 +285,20 @@ python src/ingest/embed_datasets.py
 ```
 
 This will update the local database at `data/zeno-docs-openai-index`.
+
+---
+
+## 🤝 Fork Relationship & Contributing
+
+**Upstream Sync:** This fork periodically syncs with [wri/project-zeno](https://github.com/wri/project-zeno) to stay current with improvements to the core agent architecture.
+
+**Contribution Philosophy:**
+- **To this fork:** Experiments with narrative formats, creative data storytelling, aesthetic interpretations of forest data
+- **To upstream:** If narrative tools prove valuable and align with upstream goals, we may propose contributions
+
+**Not accepting:** Changes that modify core agent behavior or upstream functionality—those belong in the upstream project.
+
+**Contact:** Open a github issue!
+
+**License:** MIT (inherited from upstream)
+
