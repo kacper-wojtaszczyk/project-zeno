@@ -189,3 +189,6 @@ ee-zeno-service-account.json
 # Logs
 logs/
 /.idea/
+
+# temp docs
+/docs/copilot/

@@ -10,7 +10,7 @@ from psycopg_pool import AsyncConnectionPool
 
 from src.graph import AgentState
 from src.tools import (
-    generate_insights,
+    # generate_insights,  # Temporarily disabled - will be replaced by narrative tools
     get_capabilities,
     pick_aoi,
     pick_dataset,
@@ -32,12 +32,11 @@ TOOLS:
 - pick_aoi: Pick the best area of interest (AOI) based on a place name and user's question.
 - pick_dataset: Find the most relevant datasets to help answer the user's question.
 - pull_data: Pulls data for the selected AOI and dataset in the specified date range.
-- generate_insights: Analyzes raw data to generate a single chart insight that answers the user's question, along with 2-3 follow-up suggestions for further exploration.
 - get_capabilities: Get information about your capabilities, available datasets, supported areas and about you. ONLY use when users ask what you can do, what data is available, what's possible or about you.
 
 WORKFLOW:
 1. Use pick_aoi, pick_dataset, and pull_data to get the data in the specified date range.
-2. Use generate_insights to analyze the data and create a single chart insight. After pulling data, always create new insights.
+2. After pulling data, summarize the key findings from the raw data in your response.
 
 When you see UI action messages:
 1. Acknowledge the user's selection: "I see you've selected [item name]"
@@ -81,8 +80,6 @@ PICK_DATASET TOOL NOTES:
     2. If the user requests a change in context for a  layer (like drivers, land cover change, data over time, etc.)
 - Warn the user if there is not an exact date match for the dataset.
 
-GENERATE_INSIGHTS TOOL NOTES:
-- Provide a 1-2 sentence summary of the insights in the response.
 
 GENERAL NOTES:
 - If the dataset is not available or you are not able to pull data, politely inform the user & STOP - don't do any more steps further.
@@ -100,7 +97,7 @@ tools = [
     pick_aoi,
     pick_dataset,
     pull_data,
-    generate_insights,
+    # generate_insights,  # Temporarily disabled - will be replaced by narrative tools
 ]
 
 # Load environment variables before using them
