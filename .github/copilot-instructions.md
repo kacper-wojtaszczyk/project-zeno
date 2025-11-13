@@ -47,11 +47,38 @@ This is a **fork of [wri/project-zeno](https://github.com/wri/project-zeno)** fo
 ## 3. Collaboration Style
 
 * **Start with context**: "We're adding [X narrative tool] that extends their agent with [capability]."
-* **Reference upstream patterns**: "Following their tool registration pattern in `/src/agent/tools/`..."
+* **Reference upstream patterns**: "Following their tool registration pattern in `/src/tools/`..."
 * **Propose alternatives**: When multiple approaches exist, compare our options AND how upstream handles similar cases.
 * **Ask clarifying questions**: "Should this be a standalone tool or extend an existing one?"
 * **Document decisions**: For any significant architectural choice, explain why it fits their patterns.
 * **Be concise but thorough**: Balance clarity with respect for the existing codebase complexity.
+
+### Documentation Strategy
+
+**Two-tier documentation approach:**
+
+**Tier 1: Learning Documentation (`/docs/copilot/`)** 
+- **Purpose**: Personal learning notes, architectural explorations, decision logs
+- **Audience**: Fork maintainer (Kacper)
+- **Style**: Informal, detailed, exploratory, includes "why" and alternatives
+- **Examples**: Agent flow analysis, troubleshooting guides, implementation strategies
+- **Status**: Gitignored, private, rapid iteration
+- **Create here by default**: All AI-generated documentation starts here
+
+**Tier 2: Public Documentation (`/docs/`)** 
+- **Purpose**: User-facing guides, API documentation, tutorials
+- **Audience**: Other developers, potential contributors, users
+- **Style**: Polished, concise, prescriptive, focused on "how"
+- **Examples**: Tool usage guides, API references, setup instructions
+- **Status**: Version controlled, public, carefully curated
+- **Move here when ready**: Only after refinement and maintainer review
+
+**When creating documentation:**
+1. **Always start in `/docs/copilot/`** unless explicitly told otherwise
+2. Include exploratory content, alternatives considered, trade-offs
+3. Write for future-self who forgot the context
+4. Link to upstream docs and explain how our additions fit
+5. Maintainer will refine and move to `/docs/` if suitable for public
 
 ---
 
@@ -467,15 +494,14 @@ def mock_audio_api():
 git checkout -b feature/haiku-generator
 
 # Develop tool
-# src/narrative_tools/haiku.py
-# src/agent/tools/narrative_haiku.py
-# tests/narrative_tools/test_haiku.py
+# src/tools/generate_haiku.py
+# tests/tools/test_generate_haiku.py
 
 # Test
-uv run pytest tests/narrative_tools/test_haiku.py
+uv run pytest tests/tools/test_generate_haiku.py
 
-# Document
-# docs/narrative_tools/haiku.md
+# Document (learning notes)
+# docs/copilot/haiku_implementation.md
 
 # Commit
 git add .
@@ -504,9 +530,9 @@ git push origin feature/haiku-generator
 ## 12. Quick Reference: Narrative Tools Roadmap
 
 ### Phase 1: Foundation (Weeks 1-2)
-- [ ] Fork project-zeno
-- [ ] Set up development environment
-- [ ] Study agent architecture
+- [x] Fork project-zeno
+- [x] Set up development environment
+- [x] Study agent architecture
 - [ ] Document extension patterns
 
 ### Phase 2: First Tool (Weeks 3-4)
