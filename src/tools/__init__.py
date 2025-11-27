@@ -1,3 +1,4 @@
+from .generate_haiku import generate_haiku
 from .generate_insights import generate_insights
 from .get_capabilities import get_capabilities
 from .pick_aoi import pick_aoi
@@ -10,4 +11,5 @@ __all__ = [
     "pull_data",
     "generate_insights",
     "get_capabilities",
+    "generate_haiku",
 ]

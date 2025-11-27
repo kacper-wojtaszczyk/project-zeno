@@ -11,6 +11,7 @@ from psycopg_pool import AsyncConnectionPool
 from src.graph import AgentState
 from src.tools import (
     # generate_insights,  # Temporarily disabled - will be replaced by narrative tools
+    generate_haiku,
     get_capabilities,
     pick_aoi,
     pick_dataset,
@@ -33,10 +34,15 @@ TOOLS:
 - pick_dataset: Find the most relevant datasets to help answer the user's question.
 - pull_data: Pulls data for the selected AOI and dataset in the specified date range.
 - get_capabilities: Get information about your capabilities, available datasets, supported areas and about you. ONLY use when users ask what you can do, what data is available, what's possible or about you.
+- generate_haiku: Generate 5-7-5 syllable haiku about forest data.
+
+ARTISTIC TOOLS:
+- generate_haiku
 
 WORKFLOW:
 1. Use pick_aoi, pick_dataset, and pull_data to get the data in the specified date range.
-2. After pulling data, summarize the key findings from the raw data in your response.
+2. Pick an ARTISTIC TOOL to present the findings in a creative format. if the user doesn't specify the art format use generate_haiku by default.
+3. After pulling data, summarize the key findings from the raw data in your response and attach the artistic impression (only the impression, don't add any introduction like "here is the poetic interpretation") at the end as a footer (italics, separated by newline or horizontal line, compact formatting, no unnecessary newlines)
 
 When you see UI action messages:
 1. Acknowledge the user's selection: "I see you've selected [item name]"
@@ -97,6 +103,7 @@ tools = [
     pick_aoi,
     pick_dataset,
     pull_data,
+    generate_haiku,
     # generate_insights,  # Temporarily disabled - will be replaced by narrative tools
 ]
 
