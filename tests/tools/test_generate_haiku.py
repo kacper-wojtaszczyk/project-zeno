@@ -502,6 +502,6 @@ async def test_generate_haiku_with_real_brazil_data():
         # Verify prompt uses real data
         prompt = mock_poetic.ainvoke.call_args[0][0]
         assert "Brazil" in prompt
-        # Total area should be sum of area_ha
-        assert "98936" in prompt  # Sum of the 4 values provided
+        # Total area should be sum of all area_ha values (4 values repeated 97 times = 388 alerts)
+        assert "9598290" in prompt or "9,598,290" in prompt  # Sum of repeated area_ha list (≈9,598,290 hectares)
 
