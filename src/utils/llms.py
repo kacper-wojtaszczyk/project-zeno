@@ -46,7 +46,7 @@ GPT = ChatOpenAI(
 
 POETIC = ChatOpenAI(
     model="gpt-4.1-mini",
-    temperature=2,
+    temperature=1.2,
     max_tokens=None,  # max_tokens=None means no limit
 )
 

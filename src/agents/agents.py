@@ -34,7 +34,6 @@ TOOLS:
 - pick_dataset: Find the most relevant datasets to help answer the user's question.
 - pull_data: Pulls data for the selected AOI and dataset in the specified date range.
 - get_capabilities: Get information about your capabilities, available datasets, supported areas and about you. ONLY use when users ask what you can do, what data is available, what's possible or about you.
-- generate_haiku: Generate 5-7-5 syllable haiku about forest data.
 
 ARTISTIC TOOLS:
 - generate_haiku

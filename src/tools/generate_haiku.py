@@ -3,6 +3,8 @@ Haiku generation tool for forest change narratives.
 Transforms quantitative forest loss data into 5-7-5 syllable poetic form.
 """
 
+import datetime
+from collections import Counter
 from typing import Annotated
 from langchain_core.tools import tool
 from langgraph.prebuilt import InjectedState
@@ -65,7 +67,6 @@ async def generate_haiku(
     # Identify main driver
     drivers = actual_data.get("driver", [])
     if drivers:
-        from collections import Counter
         driver_counts = Counter(drivers)
         main_driver = driver_counts.most_common(1)[0][0] if driver_counts else "unknown"
     else:
@@ -74,7 +75,6 @@ async def generate_haiku(
     # Get temporal context - try both possible field names
     alert_dates = actual_data.get("alert_date") or actual_data.get("dist_alert_date", [])
     if alert_dates:
-        import datetime
         try:
             first_date = datetime.datetime.strptime(alert_dates[0], "%Y-%m-%d")
             month_name = first_date.strftime("%B")
@@ -99,7 +99,7 @@ CONSTRAINTS:
 - Line 2: exactly 7 syllables
 - Line 3: exactly 5 syllables
 - Use concrete, sensory imagery
-- Make it data-driven. reference the location, area lost, main cause, and time period (not necessarily directly, can be metaphoric).
+- Make it data-driven. Reference the location, area lost, main cause, and time period (not necessarily directly, can be metaphoric).
 - Evoke loss and melancholy
 - NO explanations, ONLY the haiku
 

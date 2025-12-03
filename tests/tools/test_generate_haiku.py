@@ -4,6 +4,15 @@ import pytest
 from unittest.mock import AsyncMock, Mock, patch
 from src.tools.generate_haiku import generate_haiku
 
+@pytest.fixture(scope="function", autouse=True)
+def test_db():
+    """Override the global test_db fixture to avoid database connections."""
+    pass
+
+@pytest.fixture(scope="function", autouse=True)
+def test_db_session():
+    """Override the global test_db_session fixture to avoid database connections."""
+    pass
 
 
 @pytest.fixture
@@ -21,7 +30,7 @@ def mock_state_with_data():
                     "country": ["BRA", "BRA", "BRA", "BRA"],
                     "driver": [
                         "Potential conversion",
-                        "Wildfire",
+                        "Potential conversion",
                         "Crop management",
                         "Flooding"
                     ],
@@ -454,7 +463,7 @@ async def test_generate_haiku_with_real_brazil_data():
                     "country": ["BRA"] * 388,
                     "driver": ["Wildfire"] * 77 + ["Potential conversion"] * 78 + ["Flooding"] * 78 + ["Crop management"] * 78 + ["Unclassified"] * 77,
                     "dist_alert_date": ["2025-09-01"] * 50 + ["2025-10-01"] * 338,
-                    "area_ha": [31323.728515625, 4419.98388671875, 59311.0, 3881.587646484375],  # First few from actual data
+                    "area_ha": [31323.728515625, 4419.98388671875, 59311.0, 3881.587646484375] * 97,
                     "aoi_name": "Brazil",
                     "start_date": "2025-09-01",
                     "end_date": "2025-11-11"
