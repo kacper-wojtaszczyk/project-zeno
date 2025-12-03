@@ -44,6 +44,12 @@ GPT = ChatOpenAI(
     max_tokens=None,  # max_tokens=None means no limit
 )
 
+POETIC = ChatOpenAI(
+    model="gpt-4.1-mini",
+    temperature=1.2,
+    max_tokens=None,  # max_tokens=None means no limit
+)
+
 # Model Registry for dynamic selection
 MODEL_REGISTRY = {
     "sonnet": SONNET,
@@ -51,6 +57,7 @@ MODEL_REGISTRY = {
     "gemini": GEMINI,
     "gemini-flash": GEMINI_FLASH,
     "gpt": GPT,
+    "poetic": POETIC,
 }
 
 # Available models list for frontend
